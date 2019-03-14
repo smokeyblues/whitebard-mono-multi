@@ -1,0 +1,11 @@
+{
+  "body": "{\"note\":\"you can't call me that! don't you know who I am?!\"}",
+  "pathParameters": {
+    "id": "d97db300-1dc4-11e9-b92f-6d5afb023dd5"
+  },
+  "requestContext": {
+    "identity": {
+      "cognitoIdentityId": "USER-SUB-1234"
+    }
+  }
+}
