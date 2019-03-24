@@ -1,0 +1,49 @@
+service: whitebard-app-mono-uploads
+
+custom:
+  # Our stage is based on what is passed in when running serverless
+  # commands. Or falls back to what we have set in the provider section.
+  stage: ${opt:stage, self:provider.stage}
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  stage: dev
+  region: us-west-2
+
+resources:
+  Resources:
+    WhitebardCSVBucket:
+      Type: AWS::S3::Bucket
+      Properties:
+        # Set the CORS policy
+        CorsConfiguration:
+          CorsRules:
+          -
+            AllowedOrigins:
+            - '*'
+            AllowedHeaders:
+            - '*'
+            AllowedMethods:
+            - GET
+            - PUT
+            - POST
+            - DELETE
+            - HEAD
+            MaxAge: 3000
+
+  # Print out the name of the bucket that is created
+  Outputs:
+    WhitebardCSVBucketArn:
+      Value:
+        Fn::GetAtt:
+        - WhitebardCSVBucket
+        - Arn
+      Export:
+        Name: ${self:custom.stage}-WhitebardCSVBucketArn
+
+    WhitebardCSVBucketName:
+      Value:
+        Ref: WhitebardCSVBucket
+      Export:
+        Name: ${self:custom.stage}-WhitebardCSVBucket
