@@ -11,7 +11,7 @@ custom:
   stage: ${opt:stage, self:provider.stage}
   # Load our webpack config
   webpack:
-    webpackConfig: ./../webpack.config.js
+    webpackConfig: ./webpack.config.js
     includeModules: true
 
 provider:

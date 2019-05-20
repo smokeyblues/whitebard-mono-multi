@@ -1,5 +1,4 @@
 {
-  "body": "{\"content\":\"There. All done. Now would you like to pick out a lollipop?\"}",
   "requestContext": {
     "identity": {
       "cognitoIdentityId": "USER-SUB-6543"
