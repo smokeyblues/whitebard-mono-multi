@@ -9,6 +9,7 @@
   "author": "Aaron Pennington",
   "license": "ISC",
   "dependencies": {
+    "async": "^3.0.0",
     "aws-sdk": "^2.432.0",
     "file-system": "^2.2.2",
     "serverless-webpack": "^5.2.0",

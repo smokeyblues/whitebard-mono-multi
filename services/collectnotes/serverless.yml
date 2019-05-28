@@ -31,6 +31,8 @@ provider:
   environment:
     tableName:
       ${file(../database/serverless.yml):custom.tableName}
+    csvBucket:
+      'Fn::ImportValue': ${self:custom.stage}-WhitebardCSVBucket
 
   iamRoleStatements:
   - Effect: Allow
@@ -39,12 +41,12 @@ provider:
     # Restrict our IAM role permissions to
     # the specific table for the stage
     Resource:
-    - 'Fn::ImportValue': ${self:custom.stage-WhitebardCSVBucketArn
     - 'Fn::ImportValue': ${self:custom.stage}-WhitebardTableArn
   - Effect: Allow
     Action:
-    - lambdaInvokeFunction
-    Resounrce: "*"
+    - 's3:*'
+    Resource:
+      - Fn::Join: 'arn:aws:s3:::whitebard-app-mono-uploads-dev-whitebardcsvbucket-tf345c6q7pae/*'
 
 functions:
   # Defines an HTTP API endpoint that calls the main function in create.js
@@ -61,3 +63,6 @@ functions:
         method: get
         cors: true
         authorizer: aws_iam
+    - s3:
+        bucket:
+        event: s3:ObjectCreated:*
