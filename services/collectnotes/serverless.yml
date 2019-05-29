@@ -46,7 +46,7 @@ provider:
     Action:
     - 's3:*'
     Resource:
-      - Fn::Join: 'arn:aws:s3:::whitebard-app-mono-uploads-dev-whitebardcsvbucket-tf345c6q7pae/*'
+      - ${cf:whitebard-app-mono-uploads-${self:custom.stage}.WhitebardCSVBucketArn}
 
 functions:
   # Defines an HTTP API endpoint that calls the main function in create.js
