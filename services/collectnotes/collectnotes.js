@@ -33,30 +33,28 @@ export async function main(event, context) {
         let csvBuffer = Buffer.from(csvBody);
         let params = {
             ACL: "public-read",
-            Bucket: 'whitebard-app-mono-uploads-dev-whitebardcsvbucket-tf345c6q7pae',
+            Bucket: process.env.csvBucket,
             Key: 'private/' + event.requestContext.identity.cognitoIdentityId + '/notes.csv',
             Body: csvBuffer
         };
-        console.log(csvBuffer.toString());
-        console.log("s3.upload function about to run");
-        await s3.upload(params, function (err, data) {
-            console.log("s3.upload function happening here");
-            if (err) console.log(err, err.stack); // an error occurred
-            else console.log(data);               // successful response
-        }).promise()
+        try {
+            const result = await s3.upload(params).promise();
+            console.log(result);
+        } catch (e) {
+            console.log(e);
+        }
     }
 
     try {
         // query user's notes
         const result = await dynamoDbLib.call("query", dynamoParams);
         // join the notes contents into a string
-        console.log("csvBucket name: ", JSON.stringify(process.env.csvBucket));
         const corpus = gatherNotes(result.Items);
         // pass the string to a function that will call s3.upload and use the corpus as the value for the body property of the params object
         await uploadNotes(corpus);
         return success({ status: true });
     } catch (e) {
-        console.log("line 59", e);
+        console.log(e);
         return failure({ status: false });
     }
 }
