@@ -1,0 +1,16 @@
+{
+  "name": "billing",
+  "version": "1.0.0",
+  "description": "",
+  "main": "billing.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "serverless-webpack": "^5.2.0",
+    "uuid": "^3.3.2",
+    "webpack-node-externals": "^1.7.2"
+  }
+}
