@@ -1,4 +1,4 @@
-service: whitebard-app-mono-notes
+service: whitebard-api-mm-notes
 
 # Use the serverless-webpack plugin to transpile ES6
 plugins:

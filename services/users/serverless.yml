@@ -1,4 +1,4 @@
-service: whitebard-app-mono-users
+service: whitebard-api-mm-users
 
 custom:
   # Our stage is based on what is passed in when running serverless
