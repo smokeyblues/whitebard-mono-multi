@@ -10,7 +10,7 @@ custom:
   # commands. Or falls back to what we have set in the provider section.
   stage: ${opt:stage, self:provider.stage}
   webpack:
-    webpackConfig: ../webpack.config.js
+    webpackConfig: ./webpack.config.js
     includeModules: true
   # Load our secret environment variables based on the current stage.
   # Fallback to default if it is not in prod.
