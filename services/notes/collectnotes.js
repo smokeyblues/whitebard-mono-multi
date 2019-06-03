@@ -1,7 +1,6 @@
 const AWS = require("aws-sdk");
 import * as dynamoDbLib from "./../libs/dynamodb-lib";
 import { success, failure } from "./../libs/response-lib";
-const async = require("async");
 
 const s3 = new AWS.S3();
 

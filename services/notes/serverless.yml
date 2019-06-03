@@ -25,6 +25,8 @@ provider:
   environment:
     tableName:
       ${file(../database/serverless.yml):custom.tableName}
+    csvBucket:
+      ${cf:whitebard-app-mono-uploads-${self:custom.stage}.WhitebardCSVBucketName}
 
   iamRoleStatements:
   - Effect: Allow
@@ -102,6 +104,15 @@ functions:
     - http:
         path: notes/{id}
         method: delete
+        cors: true
+        authorizer: aws_iam
+
+  collectNotes:
+    handler: collectnotes.main
+    events:
+    - http:
+        path: notes
+        method: get
         cors: true
         authorizer: aws_iam
 
