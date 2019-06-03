@@ -26,7 +26,7 @@ provider:
     tableName:
       ${file(../database/serverless.yml):custom.tableName}
     csvBucket:
-      ${cf:whitebard-app-mono-uploads-${self:custom.stage}.WhitebardCSVBucketName}
+      ${cf:whitebard-api-mm-uploads-${self:custom.stage}.WhitebardCSVBucketName}
 
   iamRoleStatements:
   - Effect: Allow
