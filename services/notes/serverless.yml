@@ -42,6 +42,12 @@ provider:
     # the specific table for the stage
     Resource:
     - 'Fn::ImportValue': ${self:custom.stage}-WhitebardTableArn
+  - Effect: Allow
+    Action:
+    - s3:GetObject
+    - s3:PutObject
+    Resource:
+      ${self:provider.environment.csvBucket}
 
 functions:
   # Defines an HTTP API endpoint that calls the main function in create.js
