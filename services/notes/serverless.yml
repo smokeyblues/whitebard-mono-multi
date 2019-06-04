@@ -111,7 +111,7 @@ functions:
     handler: collectnotes.main
     events:
     - http:
-        path: notes
+        path: notes/toCSV
         method: get
         cors: true
         authorizer: aws_iam
