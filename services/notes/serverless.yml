@@ -27,6 +27,8 @@ provider:
       ${file(../database/serverless.yml):custom.tableName}
     csvBucket:
       ${cf:whitebard-api-mm-uploads-${self:custom.stage}.WhitebardCSVBucketName}
+    csvBucketARN:
+      ${cf:whitebard-api-mm-uploads-${self:custom.stage}.WhitebardCSVBucketArn}
 
   iamRoleStatements:
   - Effect: Allow
@@ -44,10 +46,9 @@ provider:
     - 'Fn::ImportValue': ${self:custom.stage}-WhitebardTableArn
   - Effect: Allow
     Action:
-    - s3:GetObject
     - s3:PutObject
     Resource:
-      ${self:provider.environment.csvBucket}
+      ${self:provider.environment.csvBucketARN}
 
 functions:
   # Defines an HTTP API endpoint that calls the main function in create.js
