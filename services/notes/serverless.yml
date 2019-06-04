@@ -46,6 +46,7 @@ provider:
     - 'Fn::ImportValue': ${self:custom.stage}-WhitebardTableArn
   - Effect: Allow
     Action:
+    - s3:GetObject
     - s3:PutObject
     Resource:
       ${self:provider.environment.csvBucketARN}
