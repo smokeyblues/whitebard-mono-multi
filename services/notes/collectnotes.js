@@ -33,7 +33,7 @@ export async function main(event, context) {
         let params = {
             ACL: "public-read",
             Bucket: process.env.csvBucket,
-            Key: 'private/' + event.requestContext.identity.cognitoIdentityId + '/notes.csv',
+            Key: 'private/' + event.requestContext.identity.cognitoIdentityId + '/csv/notes.csv',
             Body: csvBuffer
         };
         try {
